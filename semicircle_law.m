@@ -1,11 +1,16 @@
+% Fit the semicircle law to the normalized eigenvalues of a random
+% hermitian matrix with 0 mean and 1 variance, as obtained with randn or
+% with (sqrt(12)*rand - 0.5)
+close all;
+clear all;
 n=1E3;
 t=1;
 v=[];
-dx=0.05;
+dx=0.2;
 
 for i=1:t
     A=randn(n);
-    S = (A+A')/2;
+    S=(A+A')/2;
     v = [v; eig(S)];
 end
 v = v/sqrt(n/2);

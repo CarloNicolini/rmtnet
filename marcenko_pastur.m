@@ -4,8 +4,8 @@
 %%Parameters
 clear all;
 close all;
-t=1; %trials
-r=0.5; % aspectratio
+t=10; %trials
+r=1; % aspectratio
 n=2000; % matrixcolumnsize
 m=round(n/r);
 v=[]; % eigenvaluesamples
@@ -13,12 +13,13 @@ dx=.05; % binsize
 
 %%Experiment
 for i=1:t
-    X=randn(m,n); %randommxnmatrix
+    X=sqrt(12)*(rand(m,n) - 0.5); %random mxn matrix with 0 mean and 1 variance, equal to randn(m,n)
     s=X'*X; %symposdef matrix
     v=[v;eig(s)]; %eigenvalues
 end
 v=v/m;%normalizedeigenvalues
-a=(1-sqrt(r))^2;b=(1+sqrt(r))^2;
+a=(1-sqrt(r))^2;
+b=(1+sqrt(r))^2;
 %%Plot
 [count,x]=hist(v,a:dx:b);
 cla reset
